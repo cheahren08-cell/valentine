@@ -16,7 +16,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Spotify top left */
+/* Spotify top-left */
 .spotify {
   position: fixed;
   top: 20px;
@@ -43,31 +43,16 @@ h1 {
   font-style: italic;
 }
 
-/* Floating hearts */
-.heart {
+/* Floating hearts and items */
+.heart, .floatingItem {
   position: fixed;
-  top: -10px;
+  top: -30px;
   font-size: 24px;
   animation: floatDown linear infinite;
 }
 
 @keyframes floatDown {
   to { transform: translateY(110vh); }
-}
-
-/* Sparkles */
-.sparkle {
-  position: fixed;
-  color: white;
-  font-size: 14px;
-  animation: sparkleFall linear infinite;
-}
-
-@keyframes sparkleFall {
-  to {
-    transform: translateY(110vh);
-    opacity: 0;
-  }
 }
 
 /* Photos */
@@ -105,6 +90,7 @@ h1 {
 
 <body>
 
+<!-- Spotify top-left -->
 <div class="spotify">
 <iframe style="border-radius:12px" 
 src="https://open.spotify.com/embed/track/50aQbgfdydBXABx2gATQHn" 
@@ -127,32 +113,49 @@ allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-pictur
   </span>
 </div>
 
+<!-- Photos -->
 <img src="photo1.jpg" class="photo photo1">
 <img src="photo2.jpg" class="photo photo2">
 <img src="photo3.jpg" class="photo photo3">
 
 <script>
+// Floating hearts
 function createHeart() {
   const heart = document.createElement("div");
   heart.classList.add("heart");
   heart.innerHTML = "❤️";
-  heart.style.left = Math.random() * 100 + "vw";
+  let left = Math.random() * 100;
+
+  // Avoid photos area
+  if (left > 5 && left < 35) left = 35 + Math.random()*5; // avoids Photo1
+  if (left > 65 && left < 95) left = 60 + Math.random()*5; // avoids Photo2
+  heart.style.left = left + "vw";
+
   heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
   document.body.appendChild(heart);
   setTimeout(() => { heart.remove(); }, 7000);
 }
 setInterval(createHeart, 250);
 
-function createSparkle() {
-  const sparkle = document.createElement("div");
-  sparkle.classList.add("sparkle");
-  sparkle.innerHTML = "✨";
-  sparkle.style.left = Math.random() * 100 + "vw";
-  sparkle.style.animationDuration = (Math.random() * 3 + 3) + "s";
-  document.body.appendChild(sparkle);
-  setTimeout(() => { sparkle.remove(); }, 6000);
+// Floating items: panda, cheesecake, ice cream
+function createFloatingItem() {
+  const items = ["🐼", "🍰", "🍦"]; // emojis used instead of images
+  const item = document.createElement("div");
+  item.classList.add("floatingItem");
+  item.innerHTML = items[Math.floor(Math.random() * items.length)];
+
+  let left = Math.random() * 100;
+  // Avoid photos
+  if (left > 5 && left < 35) left = 35 + Math.random()*5; // Photo1
+  if (left > 65 && left < 95) left = 60 + Math.random()*5; // Photo2
+  item.style.left = left + "vw";
+  item.style.fontSize = "28px";
+
+  item.style.animationDuration = (Math.random() * 4 + 5) + "s";
+  document.body.appendChild(item);
+  setTimeout(() => { item.remove(); }, 7000);
 }
-setInterval(createSparkle, 400);
+setInterval(createFloatingItem, 800);
 </script>
 
 </body>
