@@ -85,6 +85,36 @@ h1 {
   left: 35%;
   transform: rotate(-5deg);
 }
+
+/* Valentine question */
+.valentine-question {
+  position: relative;
+  margin-top: 120px;
+  margin-bottom: 60px;
+}
+
+.valentine-question h2 {
+  font-size: 2.2em;
+  margin-bottom: 20px;
+}
+
+.yes-button {
+  display: inline-block;
+  padding: 20px 50px;
+  font-size: 2em;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+  background: #ff2e63;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.yes-button:hover {
+  transform: scale(1.1);
+  background: #ff004c;
+}
 </style>
 </head>
 
@@ -92,9 +122,9 @@ h1 {
 
 <!-- Spotify top-left -->
 <div class="spotify">
-<iframe style="border-radius:12px" 
-src="https://open.spotify.com/embed/track/50aQbgfdydBXABx2gATQHn" 
-width="300" height="80" frameborder="0" 
+<iframe style="border-radius:12px"
+src="https://open.spotify.com/embed/track/50aQbgfdydBXABx2gATQHn"
+width="300" height="80" frameborder="0"
 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
 </iframe>
 </div>
@@ -118,17 +148,24 @@ allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-pictur
 <img src="photo2.jpg" class="photo photo2">
 <img src="photo3.jpg" class="photo photo3">
 
+<!-- Valentine question -->
+<div class="valentine-question">
+  <h2>Will you be my Valentine? ❤️</h2>
+  <a href="https://www.youtube.com/watch?v=7_8lAS2HIxk" target="_blank" class="yes-button">
+    YES
+  </a>
+</div>
+
 <script>
 // Floating hearts
 function createHeart() {
   const heart = document.createElement("div");
   heart.classList.add("heart");
   heart.innerHTML = "❤️";
-  let left = Math.random() * 100;
 
-  // Avoid photos area
-  if (left > 5 && left < 35) left = 35 + Math.random()*5; // avoids Photo1
-  if (left > 65 && left < 95) left = 60 + Math.random()*5; // avoids Photo2
+  let left = Math.random() * 100;
+  if (left > 5 && left < 35) left = 35 + Math.random()*5;
+  if (left > 65 && left < 95) left = 60 + Math.random()*5;
   heart.style.left = left + "vw";
 
   heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
@@ -137,17 +174,16 @@ function createHeart() {
 }
 setInterval(createHeart, 250);
 
-// Floating items: panda, cheesecake, ice cream
+// Floating pandas, cheesecake, ice cream
 function createFloatingItem() {
-  const items = ["🐼", "🍰", "🍦"]; // emojis used instead of images
+  const items = ["🐼", "🍰", "🍦"];
   const item = document.createElement("div");
   item.classList.add("floatingItem");
   item.innerHTML = items[Math.floor(Math.random() * items.length)];
 
   let left = Math.random() * 100;
-  // Avoid photos
-  if (left > 5 && left < 35) left = 35 + Math.random()*5; // Photo1
-  if (left > 65 && left < 95) left = 60 + Math.random()*5; // Photo2
+  if (left > 5 && left < 35) left = 35 + Math.random()*5;
+  if (left > 65 && left < 95) left = 60 + Math.random()*5;
   item.style.left = left + "vw";
   item.style.fontSize = "28px";
 
@@ -160,6 +196,7 @@ setInterval(createFloatingItem, 800);
 
 </body>
 </html>
+
 
 
 
