@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,6 +23,89 @@ h1 {
 }
 
 .message {
-  font-size: 1.4e
+  font-size: 1.4em;
+  max-width: 800px;
+  margin: 20px auto 40px auto;
+  padding: 0 20px;
+}
+
+.photos {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.photos img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  border: 4px solid white;
+}
+
+/* Floating hearts */
+.heart {
+  position: fixed;
+  top: -10px;
+  font-size: 24px;
+  animation: floatDown linear infinite;
+}
+
+@keyframes floatDown {
+  to {
+    transform: translateY(110vh);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Happy Valentine’s Day ❤️</h1>
+
+<div class="message">
+  <p>
+    My dear Zinnirah! Happy Valentine’s Day I love you so much hope you have a great Valentine’s Day!
+  </p>
+</div>
+
+<div class="photos">
+  <!-- Replace the image links below with your own photos -->
+  <img src="photo1.jpg" alt="Photo 1">
+  <img src="photo2.jpg" alt="Photo 2">
+  <img src="photo3.jpg" alt="Photo 3">
+</div>
+
+<!-- Spotify Embed: Dance All Night - ROSÉ -->
+<iframe style="border-radius:12px" 
+src="https://open.spotify.com/embed/track/5vSg4PqfM4tL5Z7n2AFDzy" 
+width="300" height="80" frameBorder="0" 
+allowfullscreen="" 
+allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+</iframe>
+
+<script>
+// Create floating hearts
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 7000);
+}
+
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
 
 
